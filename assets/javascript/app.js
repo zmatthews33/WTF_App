@@ -6,9 +6,12 @@
 $("#click-button").on("click", function() {
 
 var dateChosen = $("#datepicker").val();
-var convertedDate = 
-console.log(dateChosen);
-var queryUrl = "https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=KmtIKgXV9VzRbLsyDRIUc3ntCemOSLIA&city=Nashville&startDateTime=" + dateChosen;
+JSON.stringify(dateChosen);
+var dateFormat = "MM/DD/YYYY";
+var convertedDate = moment(dateChosen, dateFormat);
+var formattedDate = convertedDate.format("YYYY-MM-DDTHH:mm:ssZ");
+console.log(formattedDate);
+var queryUrl = "https://app.ticketmaster.com/discovery/v2/events.json?size=5&apikey=KmtIKgXV9VzRbLsyDRIUc3ntCemOSLIA&startDateTime=" + formattedDate + "&city=Nashville";
 var proxyURL = "https://cors-anywhere.herokuapp.com/"
 $.ajax({
     url: proxyURL + queryUrl,
@@ -18,10 +21,14 @@ $.ajax({
     console.log(queryUrl);
     console.log(response);
 
-    var eventName = response._embedded.events[0].name;
-    console.log(eventName);
+    for (var i = 0; i < 5; i++) {
+        var eventName = response._embedded.events[i].name;
+        console.log(eventName);
+        $("#events-div").append(eventName);
+    }
 
-    $("#events-div").append(eventName);
+
+
 
 })
     // async:true,
