@@ -1,9 +1,59 @@
+$(document).ready(function () {
+
+var queryURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?&limit=10&location=36.1626638,-86.7816016&radius=1500&type=restaurant&key=AIzaSyBRfIy9kF3qLTHzNFZIykbRJz3CwKJYk84";
+
+var proxyURL = "https://cors-anywhere.herokuapp.com/"
+
+
+      $.ajax({
+        url: proxyURL + queryURL,
+        method: "GET",
+        headers: {
+          "x-requested-with": "http://WTFApp.com"
+        }
+      })
+        // After data comes back from the request
+        .then(function(response) {
+          //console.log(queryURL);
+          //console.log(response);  
+    
+        var results = response.results;
+          console.log(results);
+
+          for (var  j = 0; j < results.length; j++) {
+
+          var currentSpot = results[j];
+
+        
+          var cardDiv = $("<div>")
+
+          var restName = $("<h3>").text(currentSpot.name);  
+          console.log(restName);
+          
+
+          cardDiv.append(restName);
+
+
+          $("#restaurant-cards").prepend(cardDiv);
+
+        
+
+
+          }
+
+
+  })
+});
+
+
+
+
 // -------------------------------
 
 // placeholder for events api
 
 
-$("#click-button").on("click", function() {
+/*$("#click-button").on("click", function() {
 
 var dateChosen = $("#datepicker").val();
 JSON.stringify(dateChosen);
@@ -52,4 +102,4 @@ $.ajax({
     //          }
 });
 
-// -------------------------------
+// -------------------------------*/
