@@ -3,11 +3,12 @@
 // placeholder for events api
 
 
-$("#click-button").on("click", function() {
+$("#search-button").on("click", function() {
 
-var dateChosen = $("#datepicker").val();
+var dateChosen = $(".date-text").text();
+console.log(dateChosen);
 JSON.stringify(dateChosen);
-var dateFormat = "MM/DD/YYYY";
+var dateFormat = "ddd, MMM DD";
 var convertedDate = moment(dateChosen, dateFormat);
 var formattedDate = convertedDate.format("YYYY-MM-DDTHH:mm:ssZ");
 console.log(formattedDate);
