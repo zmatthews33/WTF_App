@@ -29,8 +29,10 @@ h1 {
   font-family: "Nashville";
 }
 
-#datepicker {
+input {
+  color: white;
 }
+
 .results-div {
   background-color: white;
 }
