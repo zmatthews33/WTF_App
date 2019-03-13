@@ -1,37 +1,36 @@
-//Need to figure out how to pull ratings (rating), address (vicinity), and pricing (price_level)
-//can you do multiple <p> tags or assign multiple <p> tags for each response data 
-
 
 //on click functon to bring in search when user clicks "search"
 $("#search-button").on("click", ".btn", function() {
-    
-    //query url to request data on bars within 1500 (1 mile) meter radius of nashville
-    var queryURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=36.1626638,-86.7816016&radius=1500&type=bar&key=AIzaSyBRfIy9kF3qLTHzNFZIykbRJz3CwKJYk84";
+    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=bars&location=nashville&limit=6";
 
-    //Ajax request
-    $.ajax({
-    url: queryURL,
-    method: "GET"
-    })
+  $.ajax({
+     url: myurl,
+     headers: {
+      'Authorization':'Bearer lxCQuPmOMELdb3m7ZmW59X9CTUOg7ylEV_iJhlKpsuAoFdk8jkqVGY-M0YxAJVeLTxbT2my_T_Wp0byJJsvVdhxNo2TFJH1-DE6cZXAI3iPqTf4jdkMd3q38G1KEXHYx',
+  },
+     method: 'GET',
+     dataType: 'json',
+      success: function(data){
+          console.log(data);
+      }
 
-    .done(function(response) {
-        console.log(response);
+  })
+//   .done(function(data) {
+//       console.log(data);
 
- /*       var results = response.data;
+//       var results = data
 
-        for (var i = 0; i < results.length; i++) {
+//       for (var i = 0; i < data.length; i++) {
+//           var barDiv = $("<div>");
+//           var p = $("<p>");
+//           p.text(data[i].name);
+//           var p = $("<p>").text("Name: " + data[i].name);
 
-            //create a div to hold the response data
-            var barDiv = $("<div>");
-            //create a new <p> tag to add the name
-            var p = $("<p>");
-            p.text(results[i].name);
-            var p = $("<p>").text("Bar Name: " + results[i].name);
+//           barDiv.append(p);
+//           $("bars-div").prepend(barDiv);
+//       }
+//   })
 
-            barDiv.append(p);
 
-            $("#bars-div").prepend(barDiv);
-        } */
-    })
 
 })
