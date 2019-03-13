@@ -1,45 +1,78 @@
 $(document).ready(function () {
 
-var queryURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?&limit=10&location=36.1626638,-86.7816016&radius=1500&type=restaurant&key=AIzaSyBRfIy9kF3qLTHzNFZIykbRJz3CwKJYk84";
+  //restaraunt api call to yelp
+  var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=nashville&limit=5";
 
-var proxyURL = "https://cors-anywhere.herokuapp.com/"
-
-
-      $.ajax({
-        url: proxyURL + queryURL,
-        method: "GET",
-        headers: {
-          "x-requested-with": "http://WTFApp.com"
-        }
-      })
-        // After data comes back from the request
-        .then(function(response) {
-          //console.log(queryURL);
-          //console.log(response);  
+  $.ajax({
+     url: myurl,
+     headers: {
+      'Authorization':'Bearer lxCQuPmOMELdb3m7ZmW59X9CTUOg7ylEV_iJhlKpsuAoFdk8jkqVGY-M0YxAJVeLTxbT2my_T_Wp0byJJsvVdhxNo2TFJH1-DE6cZXAI3iPqTf4jdkMd3q38G1KEXHYx',
+  },
+     method: 'GET',
+     dataType: 'json',
     
-        var results = response.results;
+  })
+        //After data comes back from the request
+        .then(function(data) {
+           
+        
+        //Setting the data to repsonse variable 
+        var results = data.businesses;
           console.log(results);
 
-          for (var  j = 0; j < results.length; j++) {
+          for (var j = 0; j < results.length; j++) {
 
-          var currentSpot = results[j];
-
-        
-          var cardDiv = $("<div>")
-
-          var restName = $("<h3>").text(currentSpot.name);  
-          console.log(restName);
+          currentSpot = results[j];
           
 
-          cardDiv.append(restName);
+          //creating variables that containg specific responses 
+          var restTitle = currentSpot.name;
+          var location = currentSpot.location.display_address;
+          var phone = currentSpot.display_phone;
+          var image = currentSpot.image_url;
+          
+
+          //creating card div
+          var newCards = $("<div>");
+          //assigning class to new card 
+          newCards.addClass("card");
+
+          //creating image div
+          var newImage = $("<img>");
+          //assigning class to new image card
+          newImage.attr({"class": "card-img-top", "src" : image});
 
 
-          $("#restaurant-cards").prepend(cardDiv);
+          //creating card body 
+          var cardBody = $("<div>");
+          //creating class to body div
+          cardBody.addClass("card-body");
 
-        
+          //creating card title 
+          var cardTitle = $("<h5>");
+          cardTitle.addClass("rest-name");
+          cardTitle.text(restTitle);
+
+          //creating location text
+          var cardLocation = $("<p>");
+          cardLocation.addClass("rest-location");
+          cardLocation.text(location);
+
+          //creating phone number text
+          var cardPhone = $("<p>");
+          cardPhone.addClass("rest-phone");
+          cardPhone.text(phone);
+
+          //Append body content into content div
+          $(cardBody).append(newImage,cardTitle, cardLocation, cardPhone);
+
+          $(newCards).append(cardBody);
+          $("#rest-dump").append(newCards);
 
 
           }
+
+          
 
 
   })
