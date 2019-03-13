@@ -45,7 +45,8 @@ input {
 
 .card {
   display: inline-flex;
-  height: 150px;
+  max-height: 400px;
   padding: 20px;
-  margin-right: 20px;
+  margin: 10px;
+  text-align: center;
 }
