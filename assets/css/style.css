@@ -29,8 +29,10 @@ h1 {
   font-family: "Nashville";
 }
 
-#datepicker {
+input {
+  color: white;
 }
+
 .results-div {
   background-color: white;
 }
@@ -40,3 +42,6 @@ h1 {
   src: url("../fonts/nashvill-webfont.woff") format("woff"),
     url("../fonts/nashvill-webfont.woff2") format("woff2");
 }
+
+
+
