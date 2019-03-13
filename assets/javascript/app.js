@@ -53,7 +53,38 @@ $.ajax({
         $("#events-div").append(makeCard);
     }
 
-})
-});
 
-// -------------------------------
+})
+
+    // Bars Api Search // 
+    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=bars&location=nashville&limit=6";
+    $.ajax({
+        url: myurl,
+        headers: {
+            'Authorization':'Bearer lxCQuPmOMELdb3m7ZmW59X9CTUOg7ylEV_iJhlKpsuAoFdk8jkqVGY-M0YxAJVeLTxbT2my_T_Wp0byJJsvVdhxNo2TFJH1-DE6cZXAI3iPqTf4jdkMd3q38G1KEXHYx',
+    },
+        method: 'GET',
+        dataType: 'json',
+        success: function(data){
+                console.log(data);
+        }
+    })
+        .done(function(data) {
+                
+                var results = data.businesses;
+
+                for (var i = 0; i < results.length; i++) {
+                    
+                    var barName = results[i].name;
+                    var barRating = results[i].rating;
+                    //var image = results[i].image_url;
+
+                    var barDiv = $("<div id='band-div' class='card' style='width: 18rem;'><div class='card-body'>").append("<h1>").text(barName + " " + barRating);
+
+                    $("#bars-results").prepend(barDiv);
+
+                }
+        
+        });
+
+});
