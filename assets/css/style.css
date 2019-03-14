@@ -34,7 +34,9 @@ input {
 }
 
 .results-div {
-  background-color: white;
+  border-radius: 25px;
+  border: 2px solid #fffffe;
+  background: rgba(102, 101, 101, 0.6);
 }
 
 @font-face {
@@ -43,10 +45,6 @@ input {
     url("../fonts/nashvill-webfont.woff2") format("woff2");
 }
 
-<<<<<<< HEAD
-
-
-=======
 .card {
   display: inline-flex;
   max-height: 400px;
@@ -54,4 +52,3 @@ input {
   margin: 10px;
   text-align: center;
 }
->>>>>>> 6b6dffff9718abaf67ebd3ce294ca355bdcd21e8
