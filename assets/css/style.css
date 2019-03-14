@@ -43,6 +43,10 @@ input {
     url("../fonts/nashvill-webfont.woff2") format("woff2");
 }
 
+<<<<<<< HEAD
+
+
+=======
 .card {
   display: inline-flex;
   max-height: 400px;
@@ -50,3 +54,4 @@ input {
   margin: 10px;
   text-align: center;
 }
+>>>>>>> 6b6dffff9718abaf67ebd3ce294ca355bdcd21e8

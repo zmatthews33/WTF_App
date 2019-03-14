@@ -1,10 +1,14 @@
 // Java———————————————
 
 // placeholder for events api
+$(document).ready(function () {
 
+    $(".results-div").hide();
+});
 
 $("#search-button").on("click", function() {
 
+    $(".results-div").show();
     // clear cards from previous searches
     for (var i = 0; i < 5; i++) {
         $("#band-div").remove();
@@ -41,19 +45,50 @@ $.ajax({
 
     // loop through the 5 result object arrays
     for (var i = 0; i < 5; i++) {
-        var eventName = response._embedded.events[i].name;
-        console.log(eventName);
-        var eventDate = response._embedded.events[i].dates.start.localDate;
-        console.log(eventDate);
+        // var eventName = response._embedded.events[i].name;
+        // console.log(eventName);
+        // var eventDate = response._embedded.events[i].dates.start.localDate;
+        // console.log(eventDate);
 
-        // create a new card with the event title and event date
-        var makeCard = $("<div id='band-div' class='card' style='width: 18rem;'><div class='card-body'>").append("<h5>").text(eventName + ":::  :::" + eventDate)
+        // // create a new card with the event title and event date
+        // var makeCard = $("<div id='band-div' class='card' style='width: 18rem;'><div class='card-body'>").append("<h5>").text(eventName + ":::  :::" + eventDate)
         
-        // manipulate the DOM by adding a the new card
-        $("#events-div").append(makeCard);
-    }
+        // // manipulate the DOM by adding a the new card
+        // $("#events-div").append(makeCard);
 
-})
+          var eventTitle = response._embedded.events[i].name;
+          var dateText = response._embedded.events[i].dates.start.localDate;
+          var image = response._embedded.events[i].images[0].url;
+          var link = response._embedded.events[i].url;
+          var newCards = $("<div>");
+          //assigning class to new card 
+          newCards.addClass("card");
+          //creating image div
+          var newImage = $("<img>");
+          //assigning class to new image card
+          newImage.attr({"class": "card-img-top", "src" : image});
+          $(".card-img-top").wrap("<a href= " + link + " >");
+          //creating card body 
+          var cardBody = $("<div>");
+          //creating class to body div
+          cardBody.addClass("card-body");
+          //creating card title 
+          var cardTitle = $("<h5>");
+          cardTitle.addClass("event-name");
+          cardTitle.text(eventTitle);
+          //creating location text
+          var cardLocation = $("<p>");
+          cardLocation.addClass("date-text");
+          cardLocation.text(dateText);
+          
+          //Append body content into content div
+          $(cardBody).append(newImage,cardTitle, cardLocation,);
+          $(newCards).append(cardBody);
+          $("#event-dump").append(newCards);
+          }
+    })
+
+
 
 
   //restaraunt api call to yelp
@@ -82,6 +117,7 @@ $.ajax({
           var location = currentSpot.location.display_address;
           var phone = currentSpot.display_phone;
           var image = currentSpot.image_url;
+          var link = currentSpot.url;
           
           //creating card div
           var newCards = $("<div>");
@@ -91,6 +127,7 @@ $.ajax({
           var newImage = $("<img>");
           //assigning class to new image card
           newImage.attr({"class": "card-img-top", "src" : image});
+          $(".card-img-top").wrap("<a href= " + link + " >");
           //creating card body 
           var cardBody = $("<div>");
           //creating class to body div
@@ -141,7 +178,7 @@ $.ajax({
           var location = currentSpot.location.display_address;
           var phone = currentSpot.display_phone;
           var image = currentSpot.image_url;
-          
+          var link = currentSpot.url;
           //creating card div
           var newCards = $("<div>");
           //assigning class to new card 
@@ -150,6 +187,7 @@ $.ajax({
           var newImage = $("<img>");
           //assigning class to new image card
           newImage.attr({"class": "card-img-top", "src" : image});
+          $(".card-img-top").wrap("<a href= " + link + " >");
           //creating card body 
           var cardBody = $("<div>");
           //creating class to body div
@@ -172,7 +210,8 @@ $.ajax({
           $("#bar-dump").append(newCards);
           }
           
-  })
+  });
+
 });
 
-// ------------------------------
+// -------------------------------
