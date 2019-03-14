@@ -1,4 +1,19 @@
 // -------------------------------
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyCJJBRwGrYTTcXaPFjKnK5Ige7EAHD8D0g",
+    authDomain: "wtfapp-b1616.firebaseapp.com",
+    databaseURL: "https://wtfapp-b1616.firebaseio.com",
+    projectId: "wtfapp-b1616",
+    storageBucket: "wtfapp-b1616.appspot.com",
+    messagingSenderId: "1031435679322"
+  };
+  firebase.initializeApp(config);
+  
+  var database = firebase.database();
+
+
+
 
 // placeholder for events api
 
@@ -140,6 +155,89 @@ $.ajax({
         }
         
 })
+
+
+// bars ares
+
+//api key and address to Yelp Fusion
+    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=bars&location=nashville&limit=6";
+
+    //ajax request
+    $.ajax({
+    url: myurl,
+    headers: {
+        'Authorization':'Bearer lxCQuPmOMELdb3m7ZmW59X9CTUOg7ylEV_iJhlKpsuAoFdk8jkqVGY-M0YxAJVeLTxbT2my_T_Wp0byJJsvVdhxNo2TFJH1-DE6cZXAI3iPqTf4jdkMd3q38G1KEXHYx',
+    },
+    method: 'GET',
+    dataType: 'json',
+    
+    }).then(function(data) {
+        //Setting the data to repsonse variable 
+        var results = data.businesses;
+            console.log(results);
+
+            //for loop to iterate though the results array
+            for (var j = 0; j < results.length; j++) {
+            currentBar = results[j];
+            
+            //creating variables that containg specific responses 
+            var barName = currentBar.name;
+            var location = currentBar.location.display_address;
+            var phone = currentBar.display_phone;
+            var image = currentBar.image_url;
+            
+            //creating card div
+            var newCards = $("<div>");
+
+            //assigning class to new card 
+            newCards.addClass("card").attr("style", "width: 18rem; height:375px");
+
+            //creating image div
+            var newImage = $("<img>");
+
+            //assigning class to new image card
+            newImage.attr({"class": "card-img-top", "src" : image});
+
+            //creating card body 
+            var cardBody = $("<div>");
+
+            //creating class to body div
+            cardBody.addClass("card-body");
+
+            //creating card title 
+            var cardTitle = $("<h5>");
+            cardTitle.addClass("rest-name");
+            cardTitle.text(barName);
+
+            //creating location text
+            var cardLocation = $("<p>");
+            cardLocation.addClass("rest-location");
+            cardLocation.text(location);
+
+            //creating phone number text
+            var cardPhone = $("<p>");
+            cardPhone.addClass("rest-phone");
+            cardPhone.text(phone);
+
+            //Append body content into content div
+            $(cardBody).append(newImage,cardTitle, cardLocation, cardPhone);
+            $(newCards).append(cardBody);
+            $("#barArea").append(newCards);
+            }
+            
+    })
+  //create a functon to log when users click on an image
+  //set a variable for userClicks
+  var userClicks = 0;
+
+  //on click function to record data 
+  $(".card-img-top").on("click", function() {
+      userClicks ++;
+      console.log(userClicks);
+
+      database.ref().push(userClicks);
+  });
+  
 });
 
 // -------------------------------
