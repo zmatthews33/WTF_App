@@ -62,9 +62,19 @@ $.ajax({
           var cardLocation = $("<p>");
           cardLocation.addClass("date-text");
           cardLocation.text(dateText);
-          
+
+          var createLink = $("<a>");
+          createLink.attr("href", link);
+          createLink.attr("target", "_blank");
+          createLink.text("More Info");
+          //button click
+          var newBtn = $("<button>");
+          newBtn.addClass("link-button")
+          newBtn.append(createLink);
+        
+  
           //Append body content into content div
-          $(cardBody).append(newImage,cardTitle, cardLocation,);
+          $(cardBody).append(newImage,cardTitle, cardLocation,newBtn);
           $(newCards).append(cardBody);
           $("#event-dump").append(newCards);
           }
@@ -122,14 +132,23 @@ $.ajax({
           var cardPhone = $("<p>");
           cardPhone.addClass("rest-phone");
           cardPhone.text(phone);
+          var createLink = $("<a>");
+          createLink.attr("href", link);
+          createLink.attr("target", "_blank");
+          createLink.text("More Info");
+          //button click
+          var newBtn = $("<button>");
+          newBtn.addClass("link-button")
+          newBtn.append(createLink);
           //Append body content into content div
-          $(cardBody).append(newImage,cardTitle, cardLocation, cardPhone);
+          $(cardBody).append(newImage,cardTitle, cardLocation, cardPhone,newBtn);
           $(newCards).append(cardBody);
           $("#rest-dump").append(newCards);
           }
+
           
   })
-  //restaraunt api call to yelp
+  //bar api call to yelp
   var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=bars&location=nashville&limit=5";
   $.ajax({
      url: myurl,
@@ -181,8 +200,16 @@ $.ajax({
           var cardPhone = $("<p>");
           cardPhone.addClass("rest-phone");
           cardPhone.text(phone);
+          var createLink = $("<a>");
+          createLink.attr("href", link);
+          createLink.attr("target", "_blank");
+          createLink.text("More Info");
+          //button click
+          var newBtn = $("<button>");
+          newBtn.addClass("link-button")
+          newBtn.append(createLink);
           //Append body content into content div
-          $(cardBody).append(newImage,cardTitle, cardLocation, cardPhone);
+          $(cardBody).append(newImage,cardTitle, cardLocation, cardPhone,newBtn);
           $(newCards).append(cardBody);
           $("#bar-dump").append(newCards);
           }
