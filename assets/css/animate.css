@@ -1,6 +1,7 @@
 .fadeInDownBig {
-  animation-duration: 2s;
+  animation-duration: 3s;
 }
 .fadeInLeft {
-  animation-duration: 2s;
+  animation-duration: 3s;
+  animation-delay: 3s;
 }
