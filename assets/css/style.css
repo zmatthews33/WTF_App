@@ -34,9 +34,11 @@ input {
 }
 
 .results-div {
-  border-radius: 25px;
+  border-radius: 15px;
   border: 2px solid #fffffe;
   background: rgba(102, 101, 101, 0.6);
+  color: white;
+  text-shadow:3px 3px 15px black;
 }
 
 @font-face {
@@ -47,8 +49,33 @@ input {
 
 .card {
   display: inline-flex;
-  max-height: 400px;
-  padding: 20px;
-  margin: 10px;
+  /* max-height: 400px; */
+  /* padding: 20px; */
+  margin: 5px;
   text-align: center;
+  border-radius: 15px;
+  background: rgba(102, 101, 101, 0.6);
+  color: white;
+}
+ 
+.link-button {
+  margin: auto;
+  font-family: "Nashville";
+  border-radius: 4px;
+  background-color: #007bff;
+  
+}
+
+a{
+  color: white;
+}
+
+.card-img-top {
+  width: 164.5px;
+  height: 123.38px;
+  margin-bottom: 10px;
+}
+
+.modal {
+  bottom: auto !important;
 }
