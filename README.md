@@ -8,12 +8,12 @@ The WTF App is a "ground-breaking" app that lets users search for where to eat, 
 Simply select the date you are visiting on the datepicker calendar and ouila! The App displays restaurants, bars, and concerts/events happening on that date. 
 
 ## WTF utilizes the following:
--Yelp Fusion API
--TicketMaster API
--AJAX
--Bootstrap 
--Materialize
--Animate.css
--Firebase.
+- Yelp Fusion API
+- TicketMaster API
+- AJAX
+- Bootstrap 
+- Materialize
+- Animate.css
+- Firebase.
 
 ## [WTF](https://zmatthews33.github.io/WTF_App/)
